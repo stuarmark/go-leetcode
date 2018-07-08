@@ -5,27 +5,26 @@ import (
 )
 
 func main() {
-	str := "abcabcbb"
+	str := "abcabccc"
+	//str := "dvdf"
+	//str := "ckilbkd"
 	fmt.Println(lengthOfLongestSubstring(str))
 }
 
 func lengthOfLongestSubstring(s string) int {
-	mr := make(map[rune]int)
 	ln, max := 0, 0
+	reftable := [256]int{}
+	for i := range reftable {
+		reftable[i] = -1
+	}
 	for i := 0; i < len(s); i++ {
-		mr[rune(s[i])] = i
-		if i > 0 && mr[rune(s[i])] > max {
-			max = mr[rune(s[i])]
-			fmt.Println(fmt.Sprintf("max:%d", max))
+		if reftable[s[i]] >= ln {
+			ln = reftable[s[i]] + 1
 		}
-
-		tot := (i - max + 1)
-		fmt.Println(fmt.Sprintf("i-max+1: %d", tot))
-		if (i - max + 1) > ln {
-			ln = (i - max + 1)
-			fmt.Println(fmt.Sprintf("ln: %d", ln))
+		reftable[s[i]] = i
+		if max < i-ln+1 {
+			max = i - ln + 1
 		}
 	}
-	fmt.Println(mr)
-	return ln
+	return max
 }
