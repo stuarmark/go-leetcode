@@ -7,7 +7,7 @@ import (
 func main() {
 	str := "abcaeiou"
 	//str := "dvdf"
-	//str := "ckilbkd"
+	//str := "ckcilbkd"
 	fmt.Println(lengthOfLongestSubstring(str))
 }
 

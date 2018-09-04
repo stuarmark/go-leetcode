@@ -24,19 +24,16 @@ func main() {
 	l2b := ListNode{Val: numarr2[1], Next: &l2c}
 	l2 := ListNode{Val: numarr2[0], Next: &l2b}
 
-	// testcase linked lists w/ non-equivalent lengths
-	// numarr1 := [2]int{9, 8}
-	// numarr2 := [1]int{1}
-	// l1b := ListNode{Val: numarr1[1], Next: nil}
-	// l1 := ListNode{Val: numarr1[0], Next: &l1b}
-	// l2 := ListNode{Val: numarr2[0], Next: nil}
-
-	// testcase singel digit w/ carry over
-	// l1 := ListNode{Val: 5, Next: nil}
-	// l2 := ListNode{Val: 5, Next: nil}
-
 	retNode := addTwoNumbers(&l1, &l2)
-	testLinkedList(retNode)
+
+	for {
+		fmt.Println(retNode)
+		if retNode.Next != nil {
+			retNode = retNode.Next
+		} else {
+			break
+		}
+	}
 }
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
@@ -82,15 +79,4 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 
 	return headNode
-}
-
-func testLinkedList(list *ListNode) {
-	for {
-		fmt.Println(list)
-		if list.Next != nil {
-			list = list.Next
-		} else {
-			break
-		}
-	}
 }

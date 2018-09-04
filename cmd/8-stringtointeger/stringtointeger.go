@@ -7,25 +7,19 @@ import (
 
 func main() {
 
-	//
-	// "   +0 123"
-	// "  -+12344"
-	// "  +1"
-	// "   +-2"
-	// "9223372036854775808"  ->2147483647
-
-	fmt.Println(myAtoi("-1233"))
+	fmt.Println(myAtoi("-   234"))
 }
 
 func myAtoi(str string) int {
-	sign, num, signcount, charcount := 1, 0, 0, 0
+	sign, num, signcount, numcount := 1, 0, 0, 0
+
 	if str == "" {
 		return 0
 	}
 
 	for i := 0; i < len(str); i++ {
 		if str[i] == ' ' {
-			if charcount > 0 {
+			if numcount > 0 || signcount > 0 {
 				break
 			}
 			continue
@@ -34,32 +28,30 @@ func myAtoi(str string) int {
 				break
 			}
 			signcount++
-			charcount++
 			continue
 		} else if str[i] == '-' {
-			if signcount == 0 {
+			if signcount == 0 && numcount == 0 {
 				sign = -1
 				signcount++
-				charcount++
-			} else {
+			} else if numcount > 0 || signcount > 0 {
 				break
 			}
+
 			continue
 		}
 		if str[i] < 48 || str[i] > 57 {
 			break
 		}
+
 		num = num*10 + int(str[i]-'0')
-		charcount++
-		fmt.Println(num)
-	}
-	num = sign * num
+		numcount++
 
-	if num > math.MaxInt32 {
-		return math.MaxInt32
-	} else if num < math.MinInt32 {
-		return math.MinInt32
+		if num > math.MaxInt32 && sign == -1 {
+			return math.MinInt32
+		} else if num > math.MaxInt32 {
+			return math.MaxInt32
+		}
 	}
 
-	return num
+	return sign * num
 }
