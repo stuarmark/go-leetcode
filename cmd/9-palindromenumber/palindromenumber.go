@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	x := 1000000001
+	x := 10001
 	fmt.Println(isPalindrome(x))
 }
 
