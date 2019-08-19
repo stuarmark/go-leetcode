@@ -6,7 +6,7 @@ import (
 
 func main() {
 
-	fmt.Println(intToRoman(2999))
+	fmt.Println(intToRoman(14))
 }
 
 func intToRoman(num int) string {
