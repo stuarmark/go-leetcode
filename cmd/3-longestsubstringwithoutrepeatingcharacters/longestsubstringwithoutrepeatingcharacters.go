@@ -18,6 +18,9 @@ func lengthOfLongestSubstring(s string) int {
 		reftable[i] = -1
 	}
 	for i := 0; i < len(s); i++ {
+		fmt.Println(i)
+		fmt.Println(reftable[s[i]])
+		fmt.Println(ln)
 		if reftable[s[i]] >= ln {
 			ln = reftable[s[i]] + 1
 		}
